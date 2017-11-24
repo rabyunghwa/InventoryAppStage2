@@ -42,31 +42,7 @@ public class MainActivity extends AppCompatActivity {
      * the inventory database.
      */
     private void displayDatabaseInfo() {
-        // Create and/or open a database to read from it
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-        // Define a projection that specifies which columns from the database
-        // you will actually use after this query.
-        String[] projection = {
-                InventoryContract.InventoryEntry._ID,
-                InventoryContract.InventoryEntry.COLUMN_PRODUCT_NAME,
-                InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY,
-                InventoryContract.InventoryEntry.COLUMN_PRODUCT_PRICE,
-                InventoryContract.InventoryEntry.COLUMN_PRODUCT_WEIGHT,
-                InventoryContract.InventoryEntry.COLUMN_PRODUCT_IMAGE_PATH,
-                InventoryContract.InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NAME,
-                InventoryContract.InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NUMBER,
-                InventoryContract.InventoryEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL};
-
-        // Perform a query on the inventory table
-        Cursor cursor = db.query(
-                InventoryContract.InventoryEntry.TABLE_NAME,   // The table to query
-                projection,            // The columns to return
-                null,                  // The columns for the WHERE clause
-                null,                  // The values for the WHERE clause
-                null,                  // Don't group the rows
-                null,                  // Don't filter by row groups
-                null);                   // The sort order
+        Cursor cursor = readProductData();
 
         TextView displayView = findViewById(R.id.text_view_inventory);
 
@@ -132,6 +108,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Helper method to read product data from the database and return a Cursor object.
+     *
+     * For debugging purposes only.
+     */
+    private Cursor readProductData() {
+        // Create and/or open a database to read from it
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        // Define a projection that specifies which columns from the database
+        // you will actually use after this query.
+        String[] projection = {
+                InventoryContract.InventoryEntry._ID,
+                InventoryContract.InventoryEntry.COLUMN_PRODUCT_NAME,
+                InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY,
+                InventoryContract.InventoryEntry.COLUMN_PRODUCT_PRICE,
+                InventoryContract.InventoryEntry.COLUMN_PRODUCT_WEIGHT,
+                InventoryContract.InventoryEntry.COLUMN_PRODUCT_IMAGE_PATH,
+                InventoryContract.InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NAME,
+                InventoryContract.InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NUMBER,
+                InventoryContract.InventoryEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL};
+
+        // Perform a query on the inventory table
+        return db.query(
+                InventoryContract.InventoryEntry.TABLE_NAME,   // The table to query
+                projection,            // The columns to return
+                null,                  // The columns for the WHERE clause
+                null,                  // The values for the WHERE clause
+                null,                  // Don't group the rows
+                null,                  // Don't filter by row groups
+                null);                   // The sort order
+    }
+
+    /**
      * Helper method to insert hardcoded product data into the database. For debugging purposes only.
      */
     private void insertProduct() {
@@ -160,6 +169,9 @@ public class MainActivity extends AppCompatActivity {
         long newRowId = db.insert(InventoryContract.InventoryEntry.TABLE_NAME, null, values);
         if (newRowId != -1) {
             Toast.makeText(this, "Data successfully inserted.", Toast.LENGTH_SHORT).show();
+
+            // refresh the UI
+            displayDatabaseInfo();
         }
     }
 
