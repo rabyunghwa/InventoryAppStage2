@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.samsung.inventoryapp">
 
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,12 +10,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.MainActivity"
+            android:label="Product List">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+
+        <provider
+            android:name=".data.InventoryProvider"
+            android:authorities="com.example.samsung.inventoryapp"
+            android:exported="false"/>
+
+        <activity
+            android:name=".activity.EditorActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:windowSoftInputMode="adjustPan">
         </activity>
     </application>
 

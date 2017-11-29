@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Layout for the editor -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_margin">
+
+        <!-- Basic Info category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/CategoryStyle"
+                android:text="Basic Info"/>
+
+            <!-- Input fields -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:paddingLeft="4dp">
+
+                <!-- Name field -->
+                <EditText
+                    android:id="@+id/edit_product_name"
+                    style="@style/EditorFieldStyle"
+                    android:hint="Name"
+                    android:inputType="textCapWords"/>
+
+                <!-- Price field -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- Weight field -->
+                    <!-- No decimal places -->
+                    <EditText
+                        android:id="@+id/edit_product_price"
+                        style="@style/EditorFieldStyle"
+                        android:hint="Price"
+                        android:inputType="numberSigned"/>
+
+                    <!-- Units for weight (kg) -->
+                    <TextView
+                        android:id="@+id/label_price_units"
+                        style="@style/EditorUnitsStyle"
+                        android:text="$"/>
+                </RelativeLayout>
+
+                <!-- Input fields -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- Weight field -->
+                    <EditText
+                        android:id="@+id/edit_product_weight"
+                        style="@style/EditorFieldStyle"
+                        android:hint="Weight"
+                        android:inputType="numberSigned"/>
+
+                    <!-- Units for weight (kg) -->
+                    <TextView
+                        android:id="@+id/label_weight_units"
+                        style="@style/EditorUnitsStyle"
+                        android:text="kg"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Supplier category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/CategoryStyle"
+                android:text="Supplier"/>
+
+            <!-- Input fields -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:paddingLeft="4dp">
+
+                <!-- Name field -->
+                <EditText
+                    android:id="@+id/edit_supplier_name"
+                    style="@style/EditorFieldStyle"
+                    android:hint="Name"
+                    android:inputType="textCapWords"/>
+
+                <!-- Number fields -->
+                <EditText
+                    android:id="@+id/edit_supplier_number"
+                    style="@style/EditorFieldStyle"
+                    android:hint="Number"
+                    android:inputType="numberDecimal"/>
+
+                <!-- Email fields -->
+                <EditText
+                    android:id="@+id/edit_supplier_email"
+                    style="@style/EditorFieldStyle"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"/>
+
+                <Button
+                    android:id="@+id/btn_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ORDER MORE"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Quantity category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/CategoryStyle"
+                android:text="Quantity"/>
+
+            <!-- Input fields -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:paddingLeft="4dp">
+
+                <TextView
+                    android:id="@+id/tv_quantity"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    style="@style/CategoryStyle"
+                    android:layout_gravity="center_vertical"
+                    android:text="0"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal">
+
+                    <!-- Plus field -->
+                    <ImageView
+                        android:onClick="increaseQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_add_white_18dp"/>
+
+                    <!-- Edit Number fields -->
+                    <EditText
+                        android:id="@+id/edit_quantity"
+                        style="@style/EditorFieldStyle"
+                        android:layout_width="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="1"
+                        android:inputType="numberSigned"/>
+
+                    <!-- Minus fields -->
+                    <ImageView
+                        android:onClick="decreaseQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_remove_white_18dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

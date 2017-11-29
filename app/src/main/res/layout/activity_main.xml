@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.samsung.inventoryapp.activity.MainActivity">
 
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!-- Empty view for the list -->
     <TextView
-        android:id="@+id/text_view_inventory"
-        android:layout_width="wrap_content"
+        android:id="@+id/empty_title_text"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="@dimen/activity_margin"/>
+        android:fontFamily="sans-serif-medium"
+        android:padding="16dp"
+        android:text="@string/empty_view_title_text"
+        android:textAppearance="?android:textAppearanceMedium"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-        android:onClick="addProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add_black_36dp"/>
+        android:onClick="addProduct"
+        android:src="@drawable/ic_add_white_36dp"/>
 
 </FrameLayout>

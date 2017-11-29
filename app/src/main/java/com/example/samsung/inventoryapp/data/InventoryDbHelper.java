@@ -34,7 +34,7 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
     /**
      * Database version. If you change the database schema, you must increment the database version.
      */
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     /**
      * Constructs a new instance of {@link InventoryDbHelper}.
@@ -54,7 +54,7 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
         String SQL_CREATE_INVENTORY_TABLE = "CREATE TABLE " + InventoryContract.InventoryEntry.TABLE_NAME + " ("
                 + InventoryContract.InventoryEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + InventoryContract.InventoryEntry.COLUMN_PRODUCT_NAME + " TEXT NOT NULL, "
-                + InventoryContract.InventoryEntry.COLUMN_PRODUCT_IMAGE_PATH + " TEXT NOT NULL, "
+                + InventoryContract.InventoryEntry.COLUMN_PRODUCT_IMAGE_PATH + " TEXT, "
                 + InventoryContract.InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NAME + " TEXT NOT NULL, "
                 + InventoryContract.InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NUMBER + " TEXT NOT NULL DEFAULT 0, "
                 + InventoryContract.InventoryEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL + " TEXT NOT NULL, "
@@ -73,8 +73,8 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // add supplier phone number column which was forgotten at first
         if (newVersion > oldVersion) {
-            String upgradeDBAddSupplierNumberColumn = "ALTER TABLE " + InventoryContract.InventoryEntry.TABLE_NAME + " ADD COLUMN "
-                    + InventoryContract.InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NUMBER + " TEXT NOT NULL DEFAULT 0000000";
+            String upgradeDBAddSupplierNumberColumn = "ALTER TABLE " + InventoryContract.InventoryEntry.TABLE_NAME + " modify COLUMN "
+                    + InventoryContract.InventoryEntry.COLUMN_PRODUCT_IMAGE_PATH + " TEXT";
             // Execute the SQL statement
             db.execSQL(upgradeDBAddSupplierNumberColumn);
         }
